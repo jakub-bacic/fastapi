@@ -50,6 +50,8 @@ def Query(  # noqa: N802
     max_length: Optional[int] = None,
     regex: Optional[str] = None,
     deprecated: Optional[bool] = None,
+    style: params.QueryStyle = params.QueryStyle.form,
+    explode: bool = True,
     **extra: Any,
 ) -> Any:
     return params.Query(
@@ -65,6 +67,8 @@ def Query(  # noqa: N802
         max_length=max_length,
         regex=regex,
         deprecated=deprecated,
+        style=style,
+        explode=explode,
         **extra,
     )
 

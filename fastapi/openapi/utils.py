@@ -13,7 +13,7 @@ from fastapi.openapi.constants import (
     STATUS_CODES_WITH_NO_BODY,
 )
 from fastapi.openapi.models import OpenAPI
-from fastapi.params import Body, Param
+from fastapi.params import Body, Param, Query
 from fastapi.responses import Response
 from fastapi.utils import (
     deep_dict_update,
@@ -104,6 +104,10 @@ def get_openapi_operation_parameters(
         if field_info.deprecated:
             parameter["deprecated"] = field_info.deprecated
         parameters.append(parameter)
+        if isinstance(field_info, Query):
+            if not field_info.explode:
+                parameter["explode"] = field_info.explode
+                parameter["style"] = field_info.style.value
     return parameters
 
 
